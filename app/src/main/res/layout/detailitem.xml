@@ -44,7 +44,6 @@
         android:layout_alignBottom="@+id/iv_detailitem"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="-30dp"
-        android:Radius="10dp"
         android:background="@drawable/rectangle_button"
         android:elevation="1dp"
         android:text="Kategori"

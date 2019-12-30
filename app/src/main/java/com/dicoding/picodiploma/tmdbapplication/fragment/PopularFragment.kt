@@ -44,7 +44,7 @@ class PopularFragment : Fragment(), MovieView {
         presenter.getPopularMovie()
 
         adapter = MovieAdapter(movies){}
-        rv_popular.layoutManager = GridLayoutManager(activity,2) as RecyclerView.LayoutManager?
+        rv_popular.layoutManager = GridLayoutManager(activity,2)
         rv_popular.adapter = adapter
 
     }

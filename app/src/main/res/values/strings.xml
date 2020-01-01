@@ -3,4 +3,31 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="id_category">
+        <item>28</item>
+        <item>12</item>
+        <item>35</item>
+        <item>99</item>
+        <item>10749</item>
+        <item>53</item>
+    </string-array>
+
+    <string-array name="name_category">
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Comedy</item>
+        <item>Documentary</item>
+        <item>Romance</item>
+        <item>Thriller</item>
+    </string-array>
+
+    <array name="category_logo">
+        <item>@drawable/action</item>
+        <item>@drawable/adventure</item>
+        <item>@drawable/comedy</item>
+        <item>@drawable/documentary</item>
+        <item>@drawable/romance</item>
+        <item>@drawable/thriller</item>
+    </array>
 </resources>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dicoding.picodiploma.tmdbapplication.R
+import com.dicoding.picodiploma.tmdbapplication.activity.DetailActivity
 import com.dicoding.picodiploma.tmdbapplication.adapter.MovieAdapter
 import com.dicoding.picodiploma.tmdbapplication.api.ApiRepository
 import com.dicoding.picodiploma.tmdbapplication.model.Movie
@@ -16,6 +17,7 @@ import com.dicoding.picodiploma.tmdbapplication.presenter.MoviePresenter
 import com.dicoding.picodiploma.tmdbapplication.view.MovieView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_now_playing.*
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * A simple [Fragment] subclass.
@@ -45,7 +47,11 @@ class NowPlayingFragment : Fragment(),MovieView {
         presenter = MoviePresenter(this, request, gson)
         presenter.getNowShowingMovie()
 
-        adapter = MovieAdapter(movies){}
+        adapter = MovieAdapter(movies){
+            startActivity<DetailActivity>(
+                "idMovie" to it.id
+            )
+        }
         rv_now_showing.layoutManager = GridLayoutManager(activity,2)
         rv_now_showing.adapter = adapter
 

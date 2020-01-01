@@ -32,6 +32,7 @@ class BerandaFragment : Fragment(),MovieView {
 
     private lateinit var item:Movie
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

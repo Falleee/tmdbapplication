@@ -14,8 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String","BASE_URL",'"https://api.themoviedb.org/"'
-        buildConfigField "String","TMDB_API_KEY",'"20a3197e5ca08eec30783357b1832998"'
+        buildConfigField "String", "BASE_URL", '"https://api.themoviedb.org/"'
+        buildConfigField "String", "TMDB_API_KEY", '"20a3197e5ca08eec30783357b1832998"'
 
     }
     buildTypes {
@@ -47,4 +47,3 @@ dependencies {
     //image
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
-

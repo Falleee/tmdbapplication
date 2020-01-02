@@ -57,7 +57,9 @@ class BerandaFragment : Fragment(),MovieView {
         rv_category.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rv_category.adapter = CategoryItemAdapter(categories){
             startActivity<CategoryActivity>(
-                "idCategory" to it.id
+                "idCategory" to it.id,
+                "nameCategory" to it.name
+
             )
 
 

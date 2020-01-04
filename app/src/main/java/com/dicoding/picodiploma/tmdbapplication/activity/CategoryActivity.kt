@@ -41,11 +41,9 @@ class CategoryActivity : AppCompatActivity(), MovieView {
         adapter = MovieAdapter(movies){
             startActivity<DetailActivity>(
                 "idMovie" to it.id.toString(),
-                "idCategory" to id_category,
                 "titleMovie" to it.judulFilm,
                 "backdrop" to it.backdropFilm,
-                "detailMovie" to it.detailMovie,
-                "nameCategory" to name_category
+                "detailMovie" to it.detailMovie
 
             )
             Log.e("cek id", it.id.toString())

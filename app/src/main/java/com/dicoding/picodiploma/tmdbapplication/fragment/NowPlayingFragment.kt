@@ -49,7 +49,10 @@ class NowPlayingFragment : Fragment(),MovieView {
 
         adapter = MovieAdapter(movies){
             startActivity<DetailActivity>(
-                "idMovie" to it.id
+                "idMovie" to it.id.toString(),
+                "titleMovie" to it.judulFilm,
+                "backdrop" to it.backdropFilm,
+                "detailMovie" to it.detailMovie
             )
         }
         rv_now_showing.layoutManager = GridLayoutManager(activity,2) as RecyclerView.LayoutManager?

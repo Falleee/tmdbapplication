@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dicoding.picodiploma.tmdbapplication.R
+import com.dicoding.picodiploma.tmdbapplication.activity.DetailActivity
 import com.dicoding.picodiploma.tmdbapplication.adapter.MovieAdapter
 import com.dicoding.picodiploma.tmdbapplication.api.ApiRepository
 import com.dicoding.picodiploma.tmdbapplication.model.Movie
@@ -17,6 +18,7 @@ import com.dicoding.picodiploma.tmdbapplication.presenter.MoviePresenter
 import com.dicoding.picodiploma.tmdbapplication.view.MovieView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_popular.*
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class PopularFragment : Fragment(), MovieView {
@@ -43,7 +45,14 @@ class PopularFragment : Fragment(), MovieView {
         presenter = MoviePresenter(this, request, gson)
         presenter.getPopularMovie()
 
-        adapter = MovieAdapter(movies){}
+        adapter = MovieAdapter(movies){
+            startActivity<DetailActivity>(
+                "idMovie" to it.id.toString(),
+                "titleMovie" to it.judulFilm,
+                "backdrop" to it.backdropFilm,
+                "detailMovie" to it.detailMovie
+            )
+        }
         rv_popular.layoutManager = GridLayoutManager(activity,2)
         rv_popular.adapter = adapter
 
@@ -66,7 +75,9 @@ class PopularFragment : Fragment(), MovieView {
         item = Movie(
             data[0].id,
             data[0].judulFilm,
-            data[0].posterFilm
+            data[0].posterFilm,
+            data[0].detailMovie,
+            data[0].backdropFilm
         )
 
 

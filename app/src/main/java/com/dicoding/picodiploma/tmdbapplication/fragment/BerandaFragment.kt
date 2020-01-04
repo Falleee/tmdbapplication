@@ -11,6 +11,7 @@ import android.widget.Adapter
 import android.widget.LinearLayout
 import com.dicoding.picodiploma.tmdbapplication.R
 import com.dicoding.picodiploma.tmdbapplication.activity.CategoryActivity
+import com.dicoding.picodiploma.tmdbapplication.activity.DetailActivity
 import com.dicoding.picodiploma.tmdbapplication.adapter.CategoryItemAdapter
 import com.dicoding.picodiploma.tmdbapplication.adapter.MoviViewHolder
 import com.dicoding.picodiploma.tmdbapplication.adapter.MovieAdapter
@@ -49,7 +50,14 @@ class BerandaFragment : Fragment(),MovieView {
         presenter = MoviePresenter(this, request, gson)
         presenter.getUpComingMovie()
 
-        adapter = MovieAdapter(movies){}
+        adapter = MovieAdapter(movies){
+            startActivity<DetailActivity>(
+                "idMovie" to it.id.toString(),
+                "titleMovie" to it.judulFilm,
+                "backdrop" to it.backdropFilm,
+                "detailMovie" to it.detailMovie
+            )
+        }
         rv_for_you.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
         rv_for_you.adapter = adapter
 
@@ -101,7 +109,9 @@ class BerandaFragment : Fragment(),MovieView {
         item = Movie(
             data[0].id,
             data[0].judulFilm,
-            data[0].posterFilm
+            data[0].posterFilm,
+            data[0].detailMovie,
+            data[0].backdropFilm
         )
 
 

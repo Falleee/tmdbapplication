@@ -37,7 +37,10 @@ class SearchActivity : AppCompatActivity(), MovieView {
 
         adapter = MovieAdapter(movies){
             startActivity<DetailActivity>(
-                "idMovie" to it.id
+                "idMovie" to it.id.toString(),
+                "titleMovie" to it.judulFilm,
+                "backdrop" to it.backdropFilm,
+                "detailMovie" to it.detailMovie
             )
         }
         rv_search.layoutManager = GridLayoutManager(applicationContext,2) as RecyclerView.LayoutManager?

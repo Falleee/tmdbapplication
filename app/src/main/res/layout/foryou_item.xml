@@ -26,17 +26,17 @@
                 android:id="@+id/tv_foryou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Gunung Putri Lembang"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginBottom="12dp"
-                android:layout_alignBottom="@+id/iv_foryou"
-                android:layout_marginStart="8dp"
                 android:layout_alignStart="@+id/iv_foryou"
-                android:layout_marginEnd="52dp"
                 android:layout_alignEnd="@+id/iv_foryou"
-                />
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Gunung Putri Lembang"/>
         </RelativeLayout>
 
 

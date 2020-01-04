@@ -21,12 +21,11 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        id_category = intent.getStringExtra("idCategory")
+
         id_movie = intent.getStringExtra("idMovie")
         title = intent.getStringExtra("titleMovie")
         backdrop = intent.getStringExtra("backdrop")
         overview = intent.getStringExtra("detailMovie")
-        name_category = intent.getStringExtra("nameCategory")
 
         val ivDetail = findViewById<ImageView>(R.id.iv_detailitem)
 
@@ -37,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
         tv_desc_detail.setText(overview)
         tv_title_detailIteam.setText(title)
         Picasso.get().load("https://image.tmdb.org/t/p/original"+backdrop).into(ivDetail)
-        btn_kategori.setText(name_category)
+        btn_kategori.setText("MOVIE")
 
     }
 

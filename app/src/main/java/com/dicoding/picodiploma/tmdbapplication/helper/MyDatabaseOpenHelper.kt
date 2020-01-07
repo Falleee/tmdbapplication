@@ -27,7 +27,8 @@ class MyDatabaseOpenHelper(ctx : Context):ManagedSQLiteOpenHelper(ctx,"Favorite.
             Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
             Favorite.MOVIE_ID to TEXT + UNIQUE,
             Favorite.NAME to TEXT,
-            Favorite.POSTER to TEXT)
+            Favorite.POSTER to TEXT,
+            Favorite.OVERVIEW to TEXT)
 
     }
 

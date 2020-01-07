@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.tmdbapplication.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -58,7 +59,8 @@ class BerandaFragment : Fragment(),MovieView {
                 "detailMovie" to it.detailMovie
             )
         }
-        rv_for_you.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+        rv_for_you.setHasFixedSize(true)
+        rv_for_you.layoutManager = GridLayoutManager(activity, 3)
         rv_for_you.adapter = adapter
 
         initDataCategory()

@@ -32,7 +32,7 @@ class MoviViewHolder(view:View):RecyclerView.ViewHolder(view) {
 
     fun bindItem(movies:Movie,listener: (Movie) -> Unit){
 
-        Picasso.get().load("https://image.tmdb.org/t/p/original"+movies.posterFilm).into(ivPoster)
+        Picasso.get().load("https://image.tmdb.org/t/p/original"+movies.posterFilm).resize(175,245).into(ivPoster)
         itemView.tv_foryou.text = movies.judulFilm
 
         itemView.setOnClickListener{

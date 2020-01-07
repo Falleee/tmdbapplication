@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         viewpager_main.adapter = MyPagerAdapter(supportFragmentManager)
         tabs_main.setupWithViewPager(viewpager_main)
 
+
+
         /*val toolbarTop : Toolbar = findViewById(R.id.toolbar)
         //val mTitle = toolbarTop.findViewById(R.id.tv_toolbar) as TextView
         setActionBar(toolbarTop.findViewById(R.id.tv_toolbar))
@@ -38,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         if (toolbarText != null && toolbar != null) {
             toolbarText.text = title
             setSupportActionBar(toolbar)
+        }
+
+        fab_favorite.setOnClickListener{
+            startActivity<FavoriteActivity>()
         }
 
     }

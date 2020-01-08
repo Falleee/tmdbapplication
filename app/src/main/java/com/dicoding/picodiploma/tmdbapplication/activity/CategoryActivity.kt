@@ -33,6 +33,8 @@ class CategoryActivity : AppCompatActivity(), MovieView {
         id_category = intent.getStringExtra("idCategory")
         name_category = intent.getStringExtra("nameCategory")
 
+        tv_title_category.setText(name_category+" Movie")
+
         val request = ApiRepository()
         val gson = Gson()
         presenter = MoviePresenter(this, request, gson)

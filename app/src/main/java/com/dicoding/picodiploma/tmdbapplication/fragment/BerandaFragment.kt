@@ -58,7 +58,7 @@ class BerandaFragment : Fragment(),MovieView {
         }
         rv_for_you.setHasFixedSize(true)
         rv_for_you.layoutManager = GridLayoutManager(activity, 3)
-        //rv_for_you.setNestedScrollingEnabled(false)
+        rv_for_you.setNestedScrollingEnabled(false)
         rv_for_you.adapter = adapter
 
         initDataCategory()

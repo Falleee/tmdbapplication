@@ -1,15 +1,26 @@
 package com.dicoding.picodiploma.tmdbapplication.activity
 
 import android.database.sqlite.SQLiteConstraintException
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.strictmode.SqliteObjectLeakedViolation
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.dicoding.picodiploma.tmdbapplication.BuildConfig
 import com.dicoding.picodiploma.tmdbapplication.R
+import com.dicoding.picodiploma.tmdbapplication.api.ApiRepository
 import com.dicoding.picodiploma.tmdbapplication.helper.database
 import com.dicoding.picodiploma.tmdbapplication.model.Favorite
+import com.dicoding.picodiploma.tmdbapplication.model.Movie
+import com.dicoding.picodiploma.tmdbapplication.model.Trailer
+import com.dicoding.picodiploma.tmdbapplication.presenter.MoviePresenter
+import com.dicoding.picodiploma.tmdbapplication.presenter.TrailerPresenter
+import com.dicoding.picodiploma.tmdbapplication.view.MovieView
+import com.dicoding.picodiploma.tmdbapplication.view.TrailerView
+import com.google.android.youtube.player.YouTubeBaseActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.db.classParser
@@ -17,7 +28,7 @@ import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity :YouTubeBaseActivity(), TrailerView {
 
     private var isFavorite: Boolean = false
 
@@ -26,7 +37,12 @@ class DetailActivity : AppCompatActivity() {
     private var title : String = ""
     private var backdrop : String = ""
     private var overview : String = ""
-    private var name_category : String = ""
+    private var ytKey : String = ""
+
+    private lateinit var item : Trailer
+
+    lateinit var youtubePlayerInit : YouTubePlayer.OnInitializedListener
+    private lateinit var presenter : TrailerPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,22 +50,31 @@ class DetailActivity : AppCompatActivity() {
 
         favoriteState()
 
+        setFavorite()
+
 
         id_movie = intent.getStringExtra("idMovie")
         title = intent.getStringExtra("titleMovie")
         backdrop = intent.getStringExtra("backdrop")
         overview = intent.getStringExtra("detailMovie")
 
-        val ivDetail = findViewById<ImageView>(R.id.iv_detailitem)
+        Log.e("cek id mov det",id_movie)
 
-        Log.e("cek overview",overview)
-        Log.e("cek backdrop",backdrop)
-        Log.e("cek title",title)
+        val ivDetail = findViewById<ImageView>(R.id.iv_detailitem)
 
         tv_desc_detail.setText(overview)
         tv_title_detailIteam.setText(title)
         Picasso.get().load(backdrop).into(ivDetail)
         btn_kategori.setText("MOVIE")
+        iv_play.visibility = View.VISIBLE
+
+        val request = ApiRepository()
+        val gson = Gson()
+        Log.e("cek id mov det",id_movie)
+        presenter = TrailerPresenter(this,request,gson)
+        presenter.getTrailerVideo(id_movie)
+        Log.e("cek id mov det",id_movie)
+
         btn_add_to_favorite.setOnClickListener{
 
             if (isFavorite) deleteFavorite() else addToFavorite()
@@ -61,6 +86,41 @@ class DetailActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun showMovie(data: List<Trailer>) {
+
+        item = Trailer(
+            data[0].keyTrailer
+        )
+
+        ytKey = data[0].keyTrailer!!
+
+        Log.e("cek key",ytKey)
+
+        initYt()
+
+    }
+
+    private fun initYt() {
+        youtubePlayerInit = object : YouTubePlayer.OnInitializedListener{
+            override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
+                p1?.loadVideo(ytKey)
+
+            }
+
+            override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
+                Toast.makeText(applicationContext,"some thing wrong",Toast.LENGTH_SHORT).show()
+
+            }
+
+        }
+
+        yt_player_view.setOnClickListener(View.OnClickListener { v->
+            iv_play.visibility = View.GONE
+            yt_player_view.initialize(BuildConfig.YT_API_KEY,youtubePlayerInit)
+
+        })
     }
 
     private fun addToFavorite(){
@@ -105,7 +165,7 @@ class DetailActivity : AppCompatActivity() {
                 .whereArgs("(MOVIE_ID = {id_movie})",
                     "id_movie" to id_movie)
             val favorite  =result.parseList(classParser<Favorite>())
-            if (!favorite.isEmpty()) isFavorite = true
+            if (favorite.isNotEmpty()) isFavorite = true
         }
     }
 

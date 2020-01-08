@@ -35,14 +35,6 @@ object TMDBApi {
                 "&language=en-US&page=1"
     }
 
-    fun getDetailMovie(idMovie:String?):String{
-        return BuildConfig.BASE_URL +
-                "3/movie/"+
-                idMovie+
-                "?api_key=" +
-                BuildConfig.TMDB_API_KEY +
-                "&language=en-US"
-    }
 
     fun getSearchMovie(query:String?):String{
         return BuildConfig.BASE_URL +
@@ -51,6 +43,16 @@ object TMDBApi {
                 "&language=en-US&query="+
                 query+
                 "&page=1"
+    }
+
+    fun getTrailer(key:String?):String{
+        return BuildConfig.BASE_URL +
+                "3/movie/"+
+                key+
+                "/videos?api_key=" +
+                BuildConfig.TMDB_API_KEY +
+                "&language=en-US"
+
     }
 
 }

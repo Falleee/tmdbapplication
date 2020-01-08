@@ -8,16 +8,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
 import com.dicoding.picodiploma.tmdbapplication.R
 import com.dicoding.picodiploma.tmdbapplication.activity.CategoryActivity
 import com.dicoding.picodiploma.tmdbapplication.activity.DetailActivity
 import com.dicoding.picodiploma.tmdbapplication.adapter.CategoryItemAdapter
-import com.dicoding.picodiploma.tmdbapplication.adapter.MoviViewHolder
 import com.dicoding.picodiploma.tmdbapplication.adapter.MovieAdapter
 import com.dicoding.picodiploma.tmdbapplication.api.ApiRepository
-import com.dicoding.picodiploma.tmdbapplication.item.Category
+import com.dicoding.picodiploma.tmdbapplication.model.Category
 import com.dicoding.picodiploma.tmdbapplication.model.Movie
 import com.dicoding.picodiploma.tmdbapplication.presenter.MoviePresenter
 import com.dicoding.picodiploma.tmdbapplication.view.MovieView
@@ -61,6 +58,7 @@ class BerandaFragment : Fragment(),MovieView {
         }
         rv_for_you.setHasFixedSize(true)
         rv_for_you.layoutManager = GridLayoutManager(activity, 3)
+        //rv_for_you.setNestedScrollingEnabled(false)
         rv_for_you.adapter = adapter
 
         initDataCategory()
@@ -84,10 +82,13 @@ class BerandaFragment : Fragment(),MovieView {
 
         categories.clear()
         for (i in categoryName.indices){
-            categories.add(Category(categoryId[i]
-                ,categoryName[i]
-                ,categoryImage.getResourceId(i,0)
-                ))
+            categories.add(
+                Category(
+                    categoryId[i]
+                    , categoryName[i]
+                    , categoryImage.getResourceId(i, 0)
+                )
+            )
         }
 
         categoryImage.recycle()

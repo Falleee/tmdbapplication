@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.tmdbapplication.presenter
 
+import android.util.Log
 import com.dicoding.picodiploma.tmdbapplication.api.ApiRepository
 import com.dicoding.picodiploma.tmdbapplication.api.TMDBApi
 import com.dicoding.picodiploma.tmdbapplication.model.MovieResponse
@@ -86,6 +87,24 @@ class MoviePresenter (
                 .doRequest(TMDBApi.getSearchMovie(query)),
                 MovieResponse::class.java
             )
+
+            uiThread {
+                view.hideLoading()
+                view.showMovie(data.results)
+            }
+
+        }
+    }
+
+    fun getTrailerVideo(key:String){
+        view.showLoading()
+        doAsync {
+            val data = gson.fromJson(apiRepository
+                .doRequest(TMDBApi.getTrailer(key)),
+                MovieResponse::class.java
+            )
+
+            Log.e("cek data",data.toString())
 
             uiThread {
                 view.hideLoading()

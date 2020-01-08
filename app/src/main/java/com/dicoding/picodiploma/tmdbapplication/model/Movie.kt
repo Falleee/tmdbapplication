@@ -18,4 +18,6 @@ data class Movie (
 
     @SerializedName("backdrop_path")
     var backdropFilm : String? = ""
+
+
 )

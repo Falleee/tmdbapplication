@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.dicoding.picodiploma.tmdbapplication.R
-import com.dicoding.picodiploma.tmdbapplication.item.Category
+import com.dicoding.picodiploma.tmdbapplication.model.Category
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.category_item.view.*
 
@@ -28,7 +28,7 @@ class CategoryViewHolder(view: View):RecyclerView.ViewHolder(view) {
 
     private val ivCategory = view.findViewById<ImageView>(R.id.iv_category)
 
-    fun bindItem (item : Category,listener: (Category) -> Unit){
+    fun bindItem (item : Category, listener: (Category) -> Unit){
 
         Picasso.get().load(item.image).into(ivCategory)
         itemView.tv_category.text = item.name

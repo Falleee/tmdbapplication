@@ -23,11 +23,11 @@
     </string-array>
 
     <array name="category_logo">
-        <item>@drawable/action</item>
-        <item>@drawable/adventure</item>
-        <item>@drawable/comedy</item>
-        <item>@drawable/documentary</item>
-        <item>@drawable/romance</item>
-        <item>@drawable/thriller</item>
+        <item>@drawable/ic_action</item>
+        <item>@drawable/ic_adventure</item>
+        <item>@drawable/ic_comedy</item>
+        <item>@drawable/ic_documentary</item>
+        <item>@drawable/ic_romance</item>
+        <item>@drawable/ic_thriller</item>
     </array>
 </resources>

@@ -3,6 +3,7 @@ package com.dicoding.picodiploma.tmdbapplication.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.dicoding.picodiploma.tmdbapplication.R
 import com.dicoding.picodiploma.tmdbapplication.adapter.MovieAdapter
@@ -52,7 +53,7 @@ class CategoryActivity : AppCompatActivity(), MovieView {
             Log.e("cek overview", it.detailMovie.toString())
 
         }
-        rv_category_list_movie.layoutManager = GridLayoutManager(this,2)
+        rv_category_list_movie.layoutManager = GridLayoutManager(this,2) as RecyclerView.LayoutManager?
         rv_category_list_movie.adapter = adapter
 
     }

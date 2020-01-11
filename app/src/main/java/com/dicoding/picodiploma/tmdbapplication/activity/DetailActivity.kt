@@ -64,7 +64,7 @@ class DetailActivity :YouTubeBaseActivity(), TrailerView {
 
         tv_desc_detail.setText(overview)
         tv_title_detailIteam.setText(title)
-        Picasso.get().load(backdrop).into(ivDetail)
+        Picasso.get().load("https://image.tmdb.org/t/p/original"+backdrop).into(ivDetail)
         btn_kategori.setText("MOVIE")
         iv_play.visibility = View.VISIBLE
 

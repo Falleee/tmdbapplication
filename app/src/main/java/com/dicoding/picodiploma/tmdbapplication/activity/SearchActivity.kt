@@ -30,6 +30,8 @@ class SearchActivity : AppCompatActivity(), MovieView {
 
         keyword = intent.getStringExtra("keyword")
 
+        tv_title_search.text = "\" "+keyword+" \""
+
         val request = ApiRepository()
         val gson = Gson()
         presenter = MoviePresenter(this, request, gson)
@@ -43,7 +45,7 @@ class SearchActivity : AppCompatActivity(), MovieView {
                 "detailMovie" to it.detailMovie
             )
         }
-        rv_search.layoutManager = GridLayoutManager(applicationContext,2) as RecyclerView.LayoutManager?
+        rv_search.layoutManager = GridLayoutManager(applicationContext,2)
         rv_search.adapter = adapter
     }
     override fun showLoading() {

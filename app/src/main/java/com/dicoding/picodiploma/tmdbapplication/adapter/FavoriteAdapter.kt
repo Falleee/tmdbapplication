@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.foryou_item.view.*
 class FavoriteAdapter (private val favorite:List<Favorite>, private val listener : (Favorite)->(Unit))
     :RecyclerView.Adapter<FavoriteViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FavoriteViewHolder {
-        return FavoriteViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.foryou_item,p0,false))
+        return FavoriteViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.favorite_item,p0,false))
     }
 
     override fun getItemCount(): Int = favorite.size

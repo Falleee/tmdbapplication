@@ -12,6 +12,7 @@ import com.dicoding.picodiploma.tmdbapplication.R
 import com.dicoding.picodiploma.tmdbapplication.activity.CategoryActivity
 import com.dicoding.picodiploma.tmdbapplication.activity.DetailActivity
 import com.dicoding.picodiploma.tmdbapplication.adapter.CategoryItemAdapter
+import com.dicoding.picodiploma.tmdbapplication.adapter.ForYouAdapter
 import com.dicoding.picodiploma.tmdbapplication.adapter.MovieAdapter
 import com.dicoding.picodiploma.tmdbapplication.api.ApiRepository
 import com.dicoding.picodiploma.tmdbapplication.model.Category
@@ -27,7 +28,7 @@ class BerandaFragment : Fragment(),MovieView {
     private var movies : MutableList<Movie> = mutableListOf()
     private val categories:MutableList<Category> = mutableListOf()
     private lateinit var presenter : MoviePresenter
-    private lateinit var adapter: MovieAdapter
+    private lateinit var adapter: ForYouAdapter
 
     private lateinit var item:Movie
 
@@ -48,7 +49,7 @@ class BerandaFragment : Fragment(),MovieView {
         presenter = MoviePresenter(this, request, gson)
         presenter.getUpComingMovie()
 
-        adapter = MovieAdapter(movies){
+        adapter = ForYouAdapter(movies){
             startActivity<DetailActivity>(
                 "idMovie" to it.id.toString(),
                 "titleMovie" to it.judulFilm,

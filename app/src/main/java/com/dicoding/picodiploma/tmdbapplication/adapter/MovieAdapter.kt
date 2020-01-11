@@ -10,11 +10,12 @@ import com.dicoding.picodiploma.tmdbapplication.R
 import com.dicoding.picodiploma.tmdbapplication.model.Movie
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.foryou_item.view.*
+import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieAdapter( private val movie: List<Movie>, private val listener : (Movie)->(Unit))
     :RecyclerView.Adapter<MoviViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MoviViewHolder {
-        return MoviViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.foryou_item, p0, false))
+        return MoviViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.movie_item, p0, false))
 
     }
 
@@ -28,12 +29,13 @@ class MovieAdapter( private val movie: List<Movie>, private val listener : (Movi
 
 class MoviViewHolder(view:View):RecyclerView.ViewHolder(view) {
 
-    private val ivPoster = view.findViewById<ImageView>(R.id.iv_foryou)
+    private val ivPoster = view.findViewById<ImageView>(R.id.iv_movie)
 
     fun bindItem(movies:Movie,listener: (Movie) -> Unit){
 
         Picasso.get().load("https://image.tmdb.org/t/p/original"+movies.posterFilm).resize(175,245).into(ivPoster)
-        itemView.tv_foryou.text = movies.judulFilm
+        itemView.tv_movie.text = movies.judulFilm
+        itemView.tv_movie_rate.text = movies.rate
 
         itemView.setOnClickListener{
             listener(movies)

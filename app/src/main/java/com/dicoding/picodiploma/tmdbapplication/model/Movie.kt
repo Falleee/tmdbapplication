@@ -17,7 +17,10 @@ data class Movie (
     var detailMovie : String? = "",
 
     @SerializedName("backdrop_path")
-    var backdropFilm : String? = ""
+    var backdropFilm : String? = "",
+
+    @SerializedName("vote_average")
+    var rate : String? = ""
 
 
 )
